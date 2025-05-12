@@ -1,5 +1,5 @@
 # Engagement
 Credits:
-Eric Pogue
-Chat Gpt
+Eric Pogue,
+Chat Gpt,
 Sam Warner
