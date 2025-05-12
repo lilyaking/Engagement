@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<!--
+   Author: Lily King
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Engagement Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Engagement Survey - Lily King</h1>
+    <h2>Lewis Events:</h2>
+
+    <p>Instructions:</p>
+    <p>For each question you will be expected to respond truthfully. Click the number corresponding to the number of events you have attended. After finishing, click the "Calculate Finished" button to see your score.</p>
+
+    <p>Question 1</p>
+    <label for="q1">How many women's volleyball matches have you been to?</label><br />
+    <select id="q1">
+        <option value="5">All</option>
+        <option value="4">24-33</option>
+        <option value="3">17-23</option>
+        <option value="2">11-16</option>
+        <option value="1">1-10</option>
+        <option value="0">0</option>
+    </select>
+    <br /><br />
+
+    <p>Question 2</p>
+    <label for="q2">How many men's volleyball matches have you been to?</label><br />
+    <select id="q2">
+        <option value="5">All</option>
+        <option value="4">39-48</option>
+        <option value="3">29-38</option>
+        <option value="2">9-28</option>
+        <option value="1">1-10</option>
+        <option value="0">0</option>
+    </select>
+    <br /><br />
+
+    <p>Question 3</p>
+    <label for="q3">How many softball games have you been to?</label><br />
+    <select id="q3">
+        <option value="5">All</option>
+        <option value="4">49-58</option>
+        <option value="3">39-48</option>
+        <option value="2">11-38</option>
+        <option value="1">1-10</option>
+        <option value="0">0</option>
+    </select>
+    <br /><br />
+
+    <p>Question 4</p>
+    <label for="q4">How many men's soccer games have you been to?</label><br />
+    <select id="q4">
+        <option value="5">All</option>
+        <option value="4">14-17</option>
+        <option value="3">10-13</option>
+        <option value="2">6-9</option>
+        <option value="1">1-5</option>
+        <option value="0">0</option>
+    </select>
+    <br /><br />
+
+    <p>Question 5</p>
+    <label for="q5">How many women's lacrosse games have you been to?</label><br />
+    <select id="q5">
+        <option value="5">All</option>
+        <option value="4">14-16</option>
+        <option value="3">10-13</option>
+        <option value="2">6-9</option>
+        <option value="1">1-5</option>
+        <option value="0">0</option>
+    </select>
+    <br /><br />
+
+    <p>Question 6</p>
+    <label for="q6">How many men's basketball games have you been to?</label><br />
+    <select id="q6">
+        <option value="5">All</option>
+        <option value="4">23-27</option>
+        <option value="3">18-22</option>
+        <option value="2">11-17</option>
+        <option value="1">1-10</option>
+        <option value="0">0</option>
+    </select>
+    <br /><br />
+
+    <p>Question 7</p>
+    <label for="q7">How many baseball games have you been to?</label><br />
+    <select id="q7">
+        <option value="5">All</option>
+        <option value="4">46-51</option>
+        <option value="3">26-45</option>
+        <option value="2">11-25</option>
+        <option value="1">1-10</option>
+        <option value="0">0</option>
+    </select>
+
+    <br /><br />
+    <button onclick="calculateFinished()">Calculate Finished</button>
+    <p id="compatibility"></p>
+
+    <script>
+        function calculateFinished() {
+            const TOTAL_QUESTIONS = 7;
+            const MAX_SCORE = 5 * TOTAL_QUESTIONS; // max compatibility score is 5 per question
+
+            const desiredAnswers = [5, 5, 5, 5, 5, 5, 5]; // Ideal answers for scoring (adjust as needed)
+
+            let totalCompatibility = 0;
+
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                const selectElement = document.getElementById("q" + i);
+                const selectedValue = parseInt(selectElement.value);
+                const desiredValue = desiredAnswers[i - 1];
+
+                const compatibility = 5 - Math.abs(selectedValue - desiredValue); // range 0 to 5
+                totalCompatibility += compatibility;
+                console.log("Question: " + document.querySelector(`label[for="q${i}"]`));
+                console.log("Value: " + selectedValue);
+                console.log("Compatibility Score: " + compatibility);
+            }
+
+            const percentageScore = Math.round((totalCompatibility / MAX_SCORE) * 100);
+            document.getElementById("compatibility").innerHTML = `Your compatibility score is: ${percentageScore}%`;
+        }
+    </script>
+</body>
+
+</html>
